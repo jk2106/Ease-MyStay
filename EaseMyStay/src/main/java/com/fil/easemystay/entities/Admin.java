@@ -1,9 +1,11 @@
 package com.fil.easemystay.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
-public class Admin {
+public class Admin{
+	@Id
 	 private String user_name;
 	    private String password;
 

@@ -1,9 +1,11 @@
 package com.fil.easemystay.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Hotel {
+	@Id
 	private int hotel_id;
     private String hotel_name;
     private String city;
