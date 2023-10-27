@@ -1,5 +1,8 @@
 package com.fil.easemystay.entities;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Payment {
 	int payment_id;
 	int amount;
