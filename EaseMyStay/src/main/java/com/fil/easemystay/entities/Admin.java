@@ -1,21 +1,21 @@
 package com.fil.easemystay.entities;
 
 public class Admin {
-	 private String username;
+	 private String user_name;
 	    private String password;
 
 	    public Admin(String username, String password) {
-	        this.username = username;
+	        this.user_name = username;
 	        this.password = password;
 	    }
 
-	    // Getter and Setter methods for the username and password attributes
+	    // Getter and Setter methods for the user_name and password attributes
 	    public String getUsername() {
-	        return username;
+	        return user_name;
 	    }
 
 	    public void setUsername(String username) {
-	        this.username = username;
+	        this.user_name = username;
 	    }
 
 	    public String getPassword() {
@@ -28,7 +28,7 @@ public class Admin {
 
 		@Override
 		public String toString() {
-			return "Admin [username=" + username + ", password=" + password + "]";
+			return "Admin [user_name=" + user_name + ", password=" + password + "]";
 		}
 
 }
