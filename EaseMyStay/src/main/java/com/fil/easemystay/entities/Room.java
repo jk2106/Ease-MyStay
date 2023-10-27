@@ -1,5 +1,8 @@
 package com.fil.easemystay.entities;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Room {
 	  private int room_id;
 	    private int hotel_id;

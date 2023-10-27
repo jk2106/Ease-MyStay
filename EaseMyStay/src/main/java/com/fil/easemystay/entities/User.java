@@ -1,5 +1,8 @@
 package com.fil.easemystay.entities;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class User {
 	private String user_name;
     private String user_dob;
