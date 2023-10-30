@@ -4,6 +4,13 @@ import jakarta.persistence.Entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+eet
+
+import jakarta.persistence.Id;
+
+@Entity
+public class User {
+	private String user_name;
 
     private String user_dob;
     private String user_contact;
@@ -12,6 +19,7 @@ import jakarta.persistence.GenerationType;
     
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long user_id;
+
 
     // Default constructor
     public User() {

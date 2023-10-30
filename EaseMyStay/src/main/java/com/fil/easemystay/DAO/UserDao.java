@@ -9,3 +9,4 @@ import com.fil.easemystay.entities.User;
 public interface UserDao  extends JpaRepository<User, Integer>{
 
 }
+
