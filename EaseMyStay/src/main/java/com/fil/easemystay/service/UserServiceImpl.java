@@ -1,5 +1,6 @@
 package com.fil.easemystay.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +54,5 @@ public class UserServiceImpl implements UserService{
 		roomdao.save(room);
 		return room;
 		}
+
 }
