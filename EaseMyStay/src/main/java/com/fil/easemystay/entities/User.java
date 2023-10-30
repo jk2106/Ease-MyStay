@@ -1,11 +1,16 @@
 package com.fil.easemystay.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class User {
 	private String user_name;
     private String user_dob;
     private String user_contact;
     private String user_password;
     private String user_email;
+    @Id
     private String user_id;
 
     // Default constructor
