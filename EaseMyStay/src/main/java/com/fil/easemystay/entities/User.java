@@ -1,19 +1,27 @@
-package com.fil.easemystay.entities;
+ package com.fil.easemystay.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class User {
 	private String user_name;
     private String user_dob;
     private String user_contact;
     private String user_password;
     private String user_email;
-    private String user_id;
+    
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long user_id;
 
     // Default constructor
     public User() {
     }
 
     // Parameterized constructor
-    public User(String user_name, String user_dob, String user_contact, String user_password, String user_email, String user_id) {
+    public User(String user_name, String user_dob, String user_contact, String user_password, String user_email, Long user_id) {
         this.user_name = user_name;
         this.user_dob = user_dob;
         this.user_contact = user_contact;
@@ -61,11 +69,11 @@ public class User {
         this.user_email = user_email;
     }
 
-    public String getUser_id() {
+    public Long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
 
@@ -74,6 +82,10 @@ public class User {
 		return "User [user_name=" + user_name + ", user_dob=" + user_dob + ", user_contact=" + user_contact
 				+ ", user_password=" + user_password + ", user_email=" + user_email + ", user_id=" + user_id + "]";
 	}
+	
+	public String getUser_password1() {
+        return user_password;
+    }
 
 
 }
