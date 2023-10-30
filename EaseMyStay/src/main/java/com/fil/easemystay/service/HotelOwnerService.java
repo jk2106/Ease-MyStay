@@ -11,3 +11,4 @@ public interface HotelOwnerService {
 	public HotelOwner updateHotelOwner(HotelOwner hotelOwner);
 	public void removeHotelOwner(int owner_id);
 }
+

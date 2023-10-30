@@ -1,14 +1,16 @@
 package com.fil.easemystay.entities;
 
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+
 import jakarta.persistence.Id;
 
 @Entity
 public class HotelOwner {
 	private String owner_name;
-	@Id 
+	@Id
 	private int owner_id;
 	private String email;
 	private String password;

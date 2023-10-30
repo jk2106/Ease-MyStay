@@ -1,3 +1,4 @@
+
 package com.fil.easemystay.service;	
 
 
@@ -46,3 +47,4 @@ public class HotelOwnerServiceImpl implements HotelOwnerService {
 		return hotelOwnerDao.findAll();	
 	}	
 }	
+
