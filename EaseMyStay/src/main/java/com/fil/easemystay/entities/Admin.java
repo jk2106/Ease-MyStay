@@ -2,6 +2,7 @@ package com.fil.easemystay.entities;
 
 
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -74,6 +75,7 @@ public class Admin {
 		this.admin_password = password;
 	}
 
+
 	public Role getRole() {
 		return role;
 	}
@@ -81,8 +83,6 @@ public class Admin {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	
 
 	public Admin(String admin_name, String admin_email, String admin_mobile, String admin_password, Role role) {
 		super();

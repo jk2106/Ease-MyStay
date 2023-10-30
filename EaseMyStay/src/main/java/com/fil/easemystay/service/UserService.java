@@ -1,5 +1,6 @@
 package com.fil.easemystay.service;
 
+
 import com.fil.easemystay.entities.User;
 
 public interface UserService {
@@ -12,3 +13,4 @@ public interface UserService {
 
 	public boolean deleteUser(User user);
 }
+
