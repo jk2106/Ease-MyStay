@@ -1,3 +1,4 @@
+
 package com.fil.easemystay.entities;
 
 
@@ -19,19 +20,15 @@ import jakarta.persistence.Id;
 @Entity
 public class Admin {
 
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer adminId;
+	@Id 
+	private int adminId;
 	private String admin_name;
-	private String admin_email;
+	public String admin_email;
 	private String admin_mobile;
 
 
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private String admin_password;
-
-	@JsonIgnore
-	@Enumerated(EnumType.STRING)
-	private Role role;
+	public String admin_password;
 	
 	
 
@@ -76,21 +73,13 @@ public class Admin {
 	}
 
 
-	public Role getRole() {
-		return role;
-	}
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	public Admin(String admin_name, String admin_email, String admin_mobile, String admin_password, Role role) {
+	public Admin(String admin_name, String admin_email, String admin_mobile, String admin_password) {
 		super();
 		this.admin_name = admin_name;
 		this.admin_email = admin_email;
 		this.admin_mobile = admin_mobile;
 		this.admin_password = admin_password;
-		this.role = role;
 	}
 
 	public Admin() {
