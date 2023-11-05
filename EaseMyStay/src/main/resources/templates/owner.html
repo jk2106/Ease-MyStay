@@ -1,0 +1,29 @@
+owner
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Owner Details</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2 th:text="${owner.name}">Owner Name</h2>
+                <p th:text="${owner.idProof}">ID Proof: </p>
+                <p th:text="${owner.contactNumber}">Contact Number: </p>
+                <p th:text="${owner.email}">Email: </p>
+            </div>
+        </div>
+    </div>
+
+    <a href="/editOwner">Edit Owner Details</a>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
