@@ -1,6 +1,21 @@
 package com.fil.easemystay.entities;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Hotel {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int hotel_id;
     private String hotel_name;
     private String city;
@@ -9,21 +24,58 @@ public class Hotel {
     private String hotel_contact;
     private int no_of_rooms;
 
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    HotelOwner hotelOwner;
+    
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Room> rooms;
+    
+    public Hotel(int hotel_id, String hotel_name, String city, String state, String hotel_pincode, String hotel_contact,
+			int no_of_rooms, HotelOwner hotelOwner, List<Room> rooms, List<Booking> booking) {
+		super();
+		this.hotel_id = hotel_id;
+		this.hotel_name = hotel_name;
+		this.city = city;
+		this.state = state;
+		this.hotel_pincode = hotel_pincode;
+		this.hotel_contact = hotel_contact;
+		this.no_of_rooms = no_of_rooms;
+		this.hotelOwner = hotelOwner;
+		this.rooms = rooms;
+		this.booking = booking;
+	}
+
+	public HotelOwner getHotelOwner() {
+		return hotelOwner;
+	}
+
+	public void setHotelOwner(HotelOwner hotelOwner) {
+		this.hotelOwner = hotelOwner;
+	}
+
+	public List<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
+	}
+
+	public List<Booking> getBooking() {
+		return booking;
+	}
+
+	public void setBooking(List<Booking> booking) {
+		this.booking = booking;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "hotel")
+    private List<Booking> booking;
+    
     // Default constructor
     public Hotel() {
     }
 
-    // Parameterized constructor
-    public Hotel(int hotel_id, String hotel_name, String city, String state, String hotel_pincode, String hotel_contact, int no_of_rooms) {
-        this.hotel_id = hotel_id;
-        this.hotel_name = hotel_name;
-        this.city = city;
-        this.state = state;
-        this.hotel_pincode = hotel_pincode;
-        this.hotel_contact = hotel_contact;
-        this.no_of_rooms = no_of_rooms;
-    }
-    
     // Getters and Setters
     public int getHotel_id() {
         return hotel_id;
@@ -85,8 +137,5 @@ public class Hotel {
 				+ ", hotel_pincode=" + hotel_pincode + ", hotel_contact=" + hotel_contact + ", no_of_rooms="
 				+ no_of_rooms + "]";
 	}
-
-    // You can also override the toString method for better representation
-   
 
 }
