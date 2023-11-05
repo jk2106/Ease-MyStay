@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Hotel</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('/images/2.jpg');
+            background-size: cover;
+            color: #ffce14;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ffce14;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-in forwards;
+            background-color: rgba(15, 36, 83, 0.7); /* Transparent table */
+        }
+
+        th {
+            background-color: #0f2453;
+            color: #ffce14;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            color: #fff;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .btn-info, .btn-primary {
+            background-color: #0f2453;
+            color: #ffce14;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .btn-info:hover, .btn-primary:hover {
+            background-color: #ffce14;
+            color: #0f2453;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.9;
+            }
+        }
+
+        .animated-box {
+            background-color: rgba(15, 36, 83, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 1s ease-in-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Edit Hotel</h1>
+        <form th:action="@{/hotels/edit/{id}(id=${hotel.hotel_id})}" th:object="${hotel}" method="post">
+            <div class="form-group">
+                <label for="hotelName">Hotel Name:</label>
+                <input type="text" id="hotelName" class="form-control" th:field="*{hotel_name}" />
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city" class="form-control" th:field="*{city}" />
+            </div>
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" id="state" class="form-control" th:field="*{state}" />
+            </div>
+            <div class="form-group">
+                <label for="hotelPincode">Pincode:</label>
+                <input type="text" id="hotelPincode" class="form-control" th:field="*{hotel_pincode}" />
+            </div>
+            <div class="form-group">
+                <label for="hotelContact">Contact:</label>
+                <input type="text" id="hotelContact" class="form-control" th:field="*{hotel_contact}" />
+            </div>
+            <div class="form-group">
+                <label for="noOfRooms">No. of Rooms:</label>
+                <input type="number" id="noOfRooms" class="form-control" th:field="*{no_of_rooms}" />
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <a th:href="@{'/hotels/' + ${hotel.hotelOwner.owner_id}}" class="btn btn-primary mt-3">Back to Your Hotels</a>
+    </div>
+    <!-- Add Bootstrap and jQuery (for Bootstrap JavaScript) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
