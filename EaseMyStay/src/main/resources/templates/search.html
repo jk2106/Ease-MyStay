@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Search Hotels by City</title>
+	
+</head>
+
+<body>
+	<form th:action="@{/search_hotels}" method="get">
+		
+		<label for="city">Enter City:</label>
+		<input type="text" id="city" name="city" /><br><br>
+		<button type="submit">Search</button>
+	</form>
+	 <div id="hotelResults"></div>
+</body>
+
+</html>

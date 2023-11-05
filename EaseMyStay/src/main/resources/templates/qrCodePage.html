@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>QR Code Page</title>
+</head>
+<body>
+    <img th:src="${qrImage}" alt="QR Code" />
+    
+      <script>
+        // Base64 encoded string
+        var base64String = "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABcklEQVR4Xu2WXWoDMQyEBbqWQVc36FoCd0ZuyqY/T/W8WVmya3+BjTRj2bb+Cvs+8RWXXMK45B9kmvn0OYYnbhiISOKaXp4FxoGKTE..."; // Your Base64 string
+
+        // Create QR code
+        var qr = qrcode(0, 'H');
+        qr.addData(atob(base64String));
+        qr.make();
+
+        // Display QR code in an HTML element
+        document.getElementById('qrcode').innerHTML = qr.createImgTag(5);
+    </script>
+</body>
+</html>

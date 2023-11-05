@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Room List</title>
+	<!-- Add Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	 <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('/images/h4.jpg');
+            background-size: cover;
+            color: #ffce14;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ffce14;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-in forwards;
+            background-color: rgba(15, 36, 83, 0.7); /* Transparent table */
+        }
+
+        th {
+            background-color: #0f2453;
+            color: #ffce14;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            color: #fff;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .btn-info, .btn-primary {
+            background-color: #0f2453;
+            color: #ffce14;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .btn-info:hover, .btn-primary:hover {
+            background-color: #ffce14;
+            color: #0f2453;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.9;
+            }
+        }
+
+        .animated-box {
+            background-color: rgba(15, 36, 83, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 1s ease-in-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+    
+</head>
+
+<body>
+
+	<div class="container mt-4">
+		     <div class="animated-box">
+		<div th:if="${rooms.empty}">
+			<!-- Display a message when no rooms are present -->
+			<p>No rooms are available in this hotel.</p>
+		</div>
+
+		<div th:unless="${rooms.empty}">
+			<h1>Room List</h1>
+			<table class="table mt-4">
+				<thead>
+					<tr>
+						<th>Room ID</th>
+						<th>Price</th>
+						<th>Status</th>
+						<th>Room Description</th>
+					</tr>
+				</thead>
+				<div <tbody>
+					<tr th:each="room : ${rooms}">
+						<td th:text="${room.room_id}">Room ID</td>
+						<td th:text="${room.price}">Price</td>
+						<td th:text="${room.status}">Status</td>
+						<td th:text="${room.room_desc}">Room Description</td>
+					</tr>
+					</tbody>
+					
+			</table>
+		</div>
+
+		<a  th:href="@{/hotels/rooms/create}"
+			style="text-decoration: none; color: #007bff; margin-right: 10px;" class="btn btn-primary" >Create New Room</a>
+
+		<a th:href="@{'/hotels/' + ${hotel.hotelOwner.owner_id}}"
+			style="text-decoration: none; color: #007bff; margin-right: 10px;" class="btn btn-primary" >Back To Your Hotels</a>
+		     </div>
+	</div>
+	<!-- Add Bootstrap and jQuery (for Bootstrap JavaScript) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

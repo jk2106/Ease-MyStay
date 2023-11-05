@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Hotel Registration</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	   <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('/images/1.jpg');
+            background-size: cover;
+            color: #ffce14;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ffce14;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-in forwards;
+            background-color: rgba(15, 36, 83, 0.7); /* Transparent table */
+        }
+
+        th {
+            background-color: #0f2453;
+            color: #ffce14;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            color: #fff;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .btn-info, .btn-primary {
+            background-color: #0f2453;
+            color: #ffce14;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .btn-info:hover, .btn-primary:hover {
+            background-color: #ffce14;
+            color: #0f2453;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.9;
+            }
+        }
+
+        .animated-box {
+            background-color: rgba(15, 36, 83, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 1s ease-in-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #f8f9fa; padding: 20px;">
+	 <div class="container mt-5">
+	<h1 class="text-center">Hotel Registration</h1>
+
+	<form th:action="@{/hotels/create}" method="post">
+		  <div class="form-group">
+			<label for="hotelName">Hotel Name:</label>
+			<input type="text" class="form-control" id="hotelName" name="hotel_name" required>
+		</div>
+
+		<div class="form-group">
+			<label for="hotelOwnerId">Hotel Owner ID:</label>
+			<input type="number" class="form-control" id="hotelName" name="hotel_owner_owner_id" required>
+		</div>
+		<div class="form-group">
+			<label for="city">City:</label>
+			<input type="text" class="form-control" id="city" name="city" required>
+		</div>
+
+		<div class="form-group">
+			<label for="state">State:</label>
+			<input type="text" class="form-control" id="state" name="state" required title = "mandatory">
+		</div>
+
+		<div class="form-group">
+			<label for="hotelPincode">Hotel Pincode:</label>
+			<input type="number" class="form-control" id="hotelPincode" name="hotel_pincode" required>
+		</div>
+
+		<div class="form-group">
+			<label for="hotelContact">Hotel Contact:</label>
+			<input type="text" class="form-control" id="hotelContact" name="hotel_contact" required pattern="[0-9]{10}" title = "mobile number should be 10 digits long"/>
+		</div>
+
+		<div class="form-group">
+			<label for="noOfRooms">Number of Rooms:</label>
+			<input type="number" class="form-control" id="noOfRooms" name="no_of_rooms" required>
+		</div>
+
+		<button id="submitButton" type="submit" class="btn btn-primary">Register
+			Hotel</button>
+	</form>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	 </div>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Hotel List</title>
+	<!-- Add Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('/images/h1.jpg');
+            background-size: cover;
+            color: #ffce14;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ffce14;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-in forwards;
+            background-color: rgba(15, 36, 83, 0.7); /* Transparent table */
+        }
+
+        th {
+            background-color: #0f2453;
+            color: #ffce14;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            color: #fff;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .btn-info, .btn-primary {
+            background-color: #0f2453;
+            color: #ffce14;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .btn-info:hover, .btn-primary:hover {
+            background-color: #ffce14;
+            color: #0f2453;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.9;
+            }
+        }
+
+        .animated-box {
+            background-color: rgba(15, 36, 83, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 1s ease-in-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+	<div class="container mt-4">
+		<h1>Hotel List</h1>
+	<div class="animated-box">
+		<div th:if="${hotels.isEmpty()}">
+			<!-- Display when no hotels are found -->
+			<div class="alert alert-warning">
+				<p>You have not listed any hotel yet.</p>
+			</div>
+		</div>
+
+		<table class="table table-bordered table-hover">
+			<thead class="bg-primary text-white">
+				<tr>
+					<th>Hotel ID</th>
+					<th>Hotel Name</th>
+					<th>Address</th>
+					<th>Contact</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Loop through a list of hotels -->
+				<tr th:each="hotel : ${hotels}">
+					<td th:text="${hotel.hotel_id}">Hotel ID</td>
+					<td th:text="${hotel.hotel_name}">Hotel Name</td>
+					<td th:text="${hotel.city+ ', '+hotel.state+', '+hotel.hotel_pincode}">Address</td>
+					<td th:text="${hotel.hotel_contact}">Contact</td>
+					<td>
+						<a th:href="@{'/hotelById/' + ${hotel.hotel_id}}" class="btn btn-info btn-sm">View Details</a>
+						<a th:href="@{'/hotels/edit/' + ${hotel.hotel_id}}" class="btn btn-info btn-sm">Edit Hotel</a>
+						<a th:href="@{'/hotels/rooms/' + ${hotel.hotel_id}}" class="btn btn-info btn-sm">See Rooms</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/hotels/create}" class="btn btn-primary">Add New Hotel</a>
+		<a href="/home" class="btn btn-primary">Home</a>
+	</div>
+	</div>
+	<!-- Add Bootstrap and jQuery (for Bootstrap JavaScript) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
