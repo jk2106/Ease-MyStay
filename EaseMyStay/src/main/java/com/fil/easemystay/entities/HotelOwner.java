@@ -1,21 +1,31 @@
 package com.fil.easemystay.entities;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class HotelOwner {
 	private String owner_name;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int owner_id;
 	private String email;
 	private String password;
 	private String id_proof;
 	private String owner_contact;
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "hotelOwner")
+    private List<Hotel> hotel;
+
 	public String getOwner_name() {
 		return owner_name;
 	}
@@ -52,6 +62,15 @@ public class HotelOwner {
 	public void setOwner_contact(String owner_contact) {
 		this.owner_contact = owner_contact;
 	}
+	public List<Hotel> getHotel() {
+		return hotel;
+	}
+	public void setHotel(List<Hotel> hotel) {
+		this.hotel = hotel;
+	}
+	
+	public HotelOwner(String owner_name, int owner_id, String email, String password, String id_proof,
+			String owner_contact, List<Hotel> hotel) {
 	public HotelOwner(String owner_name, int owner_id, String email, String password, String id_proof,
 			String owner_contact) {
 		super();
@@ -61,6 +80,7 @@ public class HotelOwner {
 		this.password = password;
 		this.id_proof = id_proof;
 		this.owner_contact = owner_contact;
+		this.hotel = hotel;
 	}
 	public HotelOwner() {
 		super();
@@ -69,6 +89,7 @@ public class HotelOwner {
 	@Override
 	public String toString() {
 		return "HotelOwner [owner_name=" + owner_name + ", owner_id=" + owner_id + ", email=" + email + ", password="
+				+ password + ", id_proof=" + id_proof + ", owner_contact=" + owner_contact + ", hotel=" + hotel + "]";
 				+ password + ", id_proof=" + id_proof + ", owner_contact=" + owner_contact + "]";
 	}
 	
