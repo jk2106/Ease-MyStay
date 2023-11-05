@@ -11,7 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-
+=======
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 @Entity
 public class Hotel {
 	@Id

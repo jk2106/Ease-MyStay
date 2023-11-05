@@ -73,7 +73,6 @@ public class Admin {
 	}
 
 
-
 	public Admin(String admin_name, String admin_email, String admin_mobile, String admin_password) {
 		super();
 		this.admin_name = admin_name;
