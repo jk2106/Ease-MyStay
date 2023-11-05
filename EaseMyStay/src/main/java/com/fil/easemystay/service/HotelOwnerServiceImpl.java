@@ -1,50 +1,68 @@
+package com.fil.easemystay.service;
 
-package com.fil.easemystay.service;	
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;	
+import com.fil.easemystay.dao.HotelOwnerDao;
+import com.fil.easemystay.entities.Admin;
+import com.fil.easemystay.entities.HotelOwner;
 
-import org.springframework.beans.factory.annotation.Autowired;	
-import org.springframework.stereotype.Service;	
+@Service
+public class HotelOwnerServiceImpl implements HotelOwnerService {
+	@Autowired
+	HotelOwnerDao hotelOwnerDao;
 
-import com.fil.easemystay.dao.HotelOwnerDao;	
-import com.fil.easemystay.entities.HotelOwner;	
+	@Override
+	public HotelOwner getHotelOwner(int owner_id) {
+		// TODO Auto-generated method stub
+		return hotelOwnerDao.findById(owner_id).get();
+	}
+	
+	@Override
+	public HotelOwner getHotelOwnerByEmail(String email) {
+		// TODO Auto-generated method stub
+		return hotelOwnerDao.findByEmailOwner(email);
+	}
 
-@Service	
-public class HotelOwnerServiceImpl implements HotelOwnerService {	
-	@Autowired	
-	HotelOwnerDao hotelOwnerDao;	
+	@Override
+	public HotelOwner addHotelOwner(HotelOwner hotelOwner) {
+		// TODO Auto-generated method stub
+		hotelOwnerDao.save(hotelOwner);
+		return hotelOwner;
+	}
 
-	@Override	
-	public HotelOwner getHotelOwner(int owner_id) {	
-		// TODO Auto-generated method stub	
-		return hotelOwnerDao.findById(owner_id).get();	
-	}	
+	@Override
+	public HotelOwner updateHotelOwner(HotelOwner hotelOwner) {
+		// TODO Auto-generated method stub
+		hotelOwnerDao.save(hotelOwner);
+		return hotelOwner;
+	}
 
-	@Override	
-	public HotelOwner addHotelOwner(HotelOwner hotelOwner) {	
-		// TODO Auto-generated method stub	
-		hotelOwnerDao.save(hotelOwner);	
-		return hotelOwner;	
-	}	
+	@Override
+	public void removeHotelOwner(int owner_id) {
+		// TODO Auto-generated method stub
+		hotelOwnerDao.deleteById(owner_id);
+	}
 
-	@Override	
-	public HotelOwner updateHotelOwner(HotelOwner hotelOwner) {	
-		// TODO Auto-generated method stub	
-		hotelOwnerDao.save(hotelOwner);	
-		return hotelOwner;	
-	}	
+	@Override
+	public List<HotelOwner> getHotelOwners() {
+		// TODO Auto-generated method stub
+		return hotelOwnerDao.findAll();
+	}
 
-	@Override	
-	public void removeHotelOwner(int owner_id) {	
-		// TODO Auto-generated method stub	
-		hotelOwnerDao.deleteById(owner_id);	
-	}	
+	@Override
+	public HotelOwner loginOwner(String email, String password) throws Exception {
+		// TODO Auto-generated method stub
+			
+			HotelOwner authenticatedOwner = hotelOwnerDao.findByEmailOwner(email);
+		
+			if (authenticatedOwner != null && authenticatedOwner.getPassword().equals(password)) {
+				return authenticatedOwner;
+			} else {
 
-	@Override	
-	public List<HotelOwner> getHotelOwners() {	
-		// TODO Auto-generated method stub	
-		return hotelOwnerDao.findAll();	
-	}	
-}	
-
+				return null;
+			}
+	}
+}

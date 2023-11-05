@@ -73,18 +73,6 @@ public class Admin {
 	}
 
 
-
-
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-
 	public Admin(String admin_name, String admin_email, String admin_mobile, String admin_password) {
 		super();
 		this.admin_name = admin_name;

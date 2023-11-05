@@ -6,9 +6,10 @@ import com.fil.easemystay.entities.HotelOwner;
 
 public interface HotelOwnerService {
 	public List<HotelOwner> getHotelOwners();
+	public HotelOwner getHotelOwnerByEmail(String email);
 	public HotelOwner getHotelOwner(int owner_id);
 	public HotelOwner addHotelOwner(HotelOwner hotelOwner);
 	public HotelOwner updateHotelOwner(HotelOwner hotelOwner);
 	public void removeHotelOwner(int owner_id);
+	public HotelOwner loginOwner(String email, String password) throws Exception;
 }
-
