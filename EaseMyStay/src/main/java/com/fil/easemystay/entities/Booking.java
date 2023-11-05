@@ -3,6 +3,7 @@ package com.fil.easemystay.entities;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -108,5 +109,3 @@ public class Booking {
 		return "Booking [booking_id=" + booking_id + ", payment_id=" + payment_id + ", check_in=" + check_in
 				+ ", check_out=" + check_out + ", user=" + user + ", hotel=" + hotel + ", room=" + room + "]";
 	}
-
-}

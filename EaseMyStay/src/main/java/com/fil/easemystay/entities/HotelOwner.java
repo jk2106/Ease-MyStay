@@ -25,8 +25,7 @@ public class HotelOwner {
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "hotelOwner")
     private List<Hotel> hotel;
-	
-	
+
 	public String getOwner_name() {
 		return owner_name;
 	}
@@ -69,7 +68,7 @@ public class HotelOwner {
 	public void setHotel(List<Hotel> hotel) {
 		this.hotel = hotel;
 	}
-	
+
 	public HotelOwner(String owner_name, int owner_id, String email, String password, String id_proof,
 			String owner_contact, List<Hotel> hotel) {
 		super();
@@ -89,6 +88,7 @@ public class HotelOwner {
 	public String toString() {
 		return "HotelOwner [owner_name=" + owner_name + ", owner_id=" + owner_id + ", email=" + email + ", password="
 				+ password + ", id_proof=" + id_proof + ", owner_contact=" + owner_contact + ", hotel=" + hotel + "]";
+
 	}
 	
 }
