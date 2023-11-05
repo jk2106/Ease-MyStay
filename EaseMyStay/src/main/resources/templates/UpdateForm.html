@@ -1,0 +1,230 @@
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Update User Information</title>
+	<!-- Include Bootstrap CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Add your custom CSS here -->
+	<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('/images/g5.jpg');
+            background-size: cover;
+            color: #ffce14;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ffce14;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-in forwards;
+            background-color: rgba(15, 36, 83, 0.7); /* Transparent table */
+        }
+
+        th {
+            background-color: #0f2453;
+            color: #ffce14;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            color: #fff;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .btn-info, .btn-primary {
+            background-color: #0f2453;
+            color: #ffce14;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .btn-info:hover, .btn-primary:hover {
+            background-color: #ffce14;
+            color: #0f2453;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.9;
+            }
+        }
+
+        .animated-box {
+            background-color: rgba(15, 36, 83, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 1s ease-in-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Update User Information</h1>
+
+		<form th:action="@{/easemystay/user/update}" th:object="${user}" method="post" class="needs-validation"
+			novalidate id="updateUserForm">
+			<!-- Hidden field to store the user ID for updating -->
+			<input type="hidden" th:field="*{user_id}">
+
+			<div class="form-group">
+				<label for="user_name">Name:</label>
+				<input type="text" class="form-control" id="user_name" th:field="*{user_name}"
+					th:value="${session.userI.user_name}" required>
+			</div>
+
+			<div class="form-group">
+				<label for="user_dob">Date of Birth:</label>
+				<input type="date" class="form-control" id="user_dob" th:field="*{user_dob}"
+					th:value="${session.userI.user_dob}" required onblur="validateDateOfBirth()">
+			</div>
+
+			<div class="form-group">
+				<label for="user_contact">Contact:</label>
+				<input type="text" class="form-control" id="user_contact" th:field="*{user_contact}"
+					th:value="${session.userI.user_contact}" th:required="required" pattern="^\d{10}$">
+			</div>
+
+			<div class="form-group">
+				<label for="user_password">Password:</label>
+				<input type="password" class="form-control" id="user_password" th:field="*{user_password}" required th:required="required" pattern=".{8,}" title="Password must be at least 8 characters long">
+			</div>
+
+			<div class="form-group">
+				<label for="user_email">Email:</label>
+				<input type="email" class="form-control" id="user_email" th:field="*{user_email}"
+					th:value="${session.userI.user_email}" th:readonly="true">
+			</div>
+
+			<button type="submit" class="btn btn-primary">Update</button>
+		</form>
+	</div>
+
+	<!-- Include Bootstrap JS and jQuery for form validation (optional) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+<script th:inline="javascript" >
+	
+	document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("updateUserForm").onsubmit = function () {
+        var nameField = document.getElementById("user_name");
+        var dobField = document.getElementById("user_dob");
+        var contactField = document.getElementById("user_contact");
+        var passwordField = document.getElementById("user_password");
+
+        var nameValue = nameField.value.trim();
+        var dobValue = dobField.value.trim();
+        var contactValue = contactField.value.trim();
+        var passwordValue = passwordField.value.trim();
+
+        if (nameValue === "") {
+            alert("Name field cannot be empty.");
+            nameField.focus();
+            return false; // Prevent form submission
+        }
+
+        if (dobValue === "") {
+            alert("Date of Birth field cannot be empty.");
+            dobField.focus();
+            return false; // Prevent form submission
+        }
+
+        if (contactValue === "") {
+            alert("Contact field cannot be empty.");
+            contactField.focus();
+            return false; // Prevent form submission
+        }
+
+        if (passwordValue === "") {
+            alert("Password field cannot be empty.");
+            passwordField.focus();
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
+    };
+});
+
+	
+	
+		function validateDateOfBirth() {
+    var dobInput = document.getElementById("user_dob");
+    var selectedDate = new Date(dobInput.value);
+    var currentDate = new Date();
+    var minAgeDate = new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate());
+
+    if (selectedDate > minAgeDate) {
+        alert("You must be at least 18 years old to register.");
+        dobInput.value = "";
+    }
+}
+
+	/* Show the alert if there's an error message */
+	var errorMessage = [[${errorMessage}]];
+	if (errorMessage) {
+		document.getElementById("errorAlert").style.display = "block";
+	}
+
+	/* Close the alert when the user clicks the close button */
+	var closeButton = document.querySelector('[data-bs-dismiss="alert"]');
+	if (closeButton) {
+		closeButton.addEventListener("click", function () {
+			document.getElementById("errorAlert").style.display = "none";
+		});
+	}
+</script>
+
+</html>
+
+	
